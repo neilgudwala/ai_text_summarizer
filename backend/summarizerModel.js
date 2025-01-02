@@ -1,11 +1,12 @@
 const axios = require('axios');
 
 async function summarizeText(text) { 
+  console.log("summarizeText called")
   let data = JSON.stringify({
     "inputs": text,
     "parameters": {
       "max_length": 100,
-      "min_length": 30
+      "min_length": 100
     }
   });
 
@@ -15,24 +16,21 @@ async function summarizeText(text) {
     url: 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
     headers: { 
       'Content-Type': 'application/json', 
-      'Authorization': 'Bearer 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'
+      'Authorization': process.env.REACT_APP_HUGGINGFACE_API_KEY
     },
     data : data
   };
 
-  async function makeRequest() {
     try {
+      console.log("makeRequest")
       const response = await axios.request(config);
-      console.log(JSON.stringify(response.data));
+      console.log(response.data)
+      return response.data[0].summary_text;
     }
     catch (error) {
       console.log(error);
     }
-  }
-
-  makeRequest();
 
 }
-// Allows for summarized text to be called outside of this file
   
-module.exports = summarizeText;
+module.exports = {summarizeText};

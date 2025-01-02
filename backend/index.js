@@ -1,20 +1,12 @@
+// backend/index.js
 const express = require('express');
-const app = express();
-const port = 3000;
+const cors = require('cors');
+const summarizeRouter = require('./summarizeRouter');
 
-// Parses JSON bodies (as sent by API clients)
+const app = express();
+app.use(cors());
 app.use(express.json());
 
-// Serves static files from the 'public' directory
-app.use(express.static('public'));
+app.use('/api', summarizeRouter);
 
-// Start the server
-app.listen(port, () => {
-console.log(`Server running at http://localhost:${port}/`);
-});
-
-app.post('/summarize', async (req, res) => {
-const textToSummarize = req.body.text;
-const summarizedText = await summarizeText(textToSummarize);
-res.send({ summary: summarizedText });
-});
+app.listen(8000, () => console.log('Server running on http://localhost:8000'));
