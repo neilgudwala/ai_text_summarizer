@@ -9,13 +9,13 @@ const whitelist = ["https://delightful-alfajores-30c408.netlify.app/"];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (whitelist.includes(origin)) {
+    if (!origin || whitelist.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
+  },
+  credentials: true, // only needed if you're sending cookies/auth headers
 };
 
 app.use(cors(corsOptions));
