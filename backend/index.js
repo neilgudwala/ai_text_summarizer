@@ -5,7 +5,7 @@ const summarizeRouter = require('./summarizeRouter');
 const app = express();
 
 
-const whitelist = ["https://delightful-alfajores-30c408.netlify.app/"];
+const whitelist = ["https://delightful-alfajores-30c408.netlify.app"];
 
 const corsOptions = {
   origin: function (origin, callback) {
