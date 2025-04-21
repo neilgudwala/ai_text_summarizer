@@ -3,7 +3,22 @@ const cors = require('cors');
 const summarizeRouter = require('./summarizeRouter');
 
 const app = express();
-app.use(cors());
+
+
+const whitelist = ["https://summari-ai.onrender.com/"];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (whitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api', summarizeRouter);
