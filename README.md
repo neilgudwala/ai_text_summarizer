@@ -1,8 +1,8 @@
 To run the app: \
-<open cmd>
+open cmd \
 cd frontend\
 npm install\
 npm start\
-<open another terminal> 
+open another terminal \
 cd backend\
 node index.js\
