@@ -1,4 +1,4 @@
-To run the app:
+To run the app: \
 <open cmd>
 cd frontend
 npm install
