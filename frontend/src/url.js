@@ -1,3 +1,3 @@
-export const URL = "http://localhost:8000";
+export const URL = "https://summari-ai.onrender.com";
 
 //url for the backend
